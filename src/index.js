@@ -28,7 +28,10 @@ class Board extends React.Component {
 
   handleClick(i) {
     const squares = this.state.squares.slice();
-    if (squares[i] === null) {
+    if (
+      calculateWinner(squares) === null &&
+      squares[i] === null
+    ) {
       squares[i] = this.state.next;
       this.setState({
         squares: squares,
@@ -103,6 +106,8 @@ ReactDOM.render(
 );
 
 function calculateWinner(squares) {
+  let winner = null;
+
   const lines = [
     // Horizontals
     [0, 1, 2],
@@ -126,8 +131,10 @@ function calculateWinner(squares) {
       squares[a] === squares[b] &&
       squares[a] === squares[c]
     ) {
-      return squares[a];
+      winner = squares[a];
+      break;
     }
   }
-  return null;
+
+  return winner;
 }
