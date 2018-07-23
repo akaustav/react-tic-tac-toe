@@ -104,7 +104,7 @@ class Game extends React.Component {
       const row = Math.floor(loc / 3);
 
       const desc = move ?
-        `Go to move # ${move} at (${col}, ${row})` :
+        `Go to move # ${move} at (col=${col}, row=${row})` :
         `Go to game start`;
       return (
         <li key={move}>
