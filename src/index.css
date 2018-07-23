@@ -38,9 +38,6 @@ button {
 
 .square:focus {
   outline: none;
-}
-
-.kbd-navigation .square:focus {
   background: #ddd;
 }
 
@@ -51,4 +48,8 @@ button {
 
 .game-info {
   margin-left: 20px;
+}
+
+.selected {
+  font-weight: bold;
 }
