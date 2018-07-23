@@ -74,7 +74,8 @@ class Game extends React.Component {
         }
       ],
       stepNumber: 0,
-      next: 'X'
+      next: 'X',
+      movesAsc: true
     };
   }
 
@@ -103,6 +104,13 @@ class Game extends React.Component {
     this.setState({
       stepNumber: step,
       next: (step % 2) ? 'O' : 'X'
+    });
+  }
+
+  reverseMoves() {
+    const movesAsc = this.state.movesAsc;
+    this.setState({
+      movesAsc: !movesAsc
     });
   }
 
@@ -135,6 +143,11 @@ class Game extends React.Component {
       );
     });
 
+    const direction = this.state.movesAsc;
+    if (!direction) {
+      moves.reverse();
+    }
+
     let status;
     if (winner) {
       status = `Winner: ` + winner;
@@ -152,6 +165,10 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
+          <button
+            onClick={() => this.reverseMoves()}>
+            Reverse Moves
+          </button>
           <ol>{moves}</ol>
         </div>
       </div>
