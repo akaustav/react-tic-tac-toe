@@ -8,6 +8,7 @@ ol, ul {
 }
 
 button {
+  font-weight: inherit;
   font-family: inherit;
 }
 
@@ -50,6 +51,6 @@ button {
   margin-left: 20px;
 }
 
-.selected {
+.game-info .active {
   font-weight: bold;
 }
