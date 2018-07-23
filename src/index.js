@@ -17,30 +17,43 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
+        key={i}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
     );
   }
 
+  renderBoard() {
+    const board = [];
+
+    // Outer loop to create Board Row
+    for (let r = 0; r < 3; ++r) {
+      const boardRow = [];
+
+      // Inner loop to create Square
+      for (let c = 0; c < 3; ++c) {
+        const n = (3 * r) + c;
+        boardRow.push(this.renderSquare(n));
+      }
+
+      board.push(
+        <div
+          key={r}
+          className="board-row"
+        >
+          {boardRow}
+        </div>
+      );
+    }
+
+    return board;
+  }
+
   render() {
     return (
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {this.renderBoard()}
       </div>
     );
   }
@@ -172,7 +185,7 @@ function calculateWinner(squares) {
     [2, 4, 6]
   ];
 
-  for(let i = 0; i < lines.length; ++i) {
+  for (let i = 0; i < lines.length; ++i) {
     const [a, b, c] = lines[i];
     if (
       squares[a] &&
