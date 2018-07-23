@@ -37,6 +37,10 @@ button {
   width: 34px;
 }
 
+.square.winner {
+  color: red;
+}
+
 .square:focus {
   outline: none;
   background: #ddd;
